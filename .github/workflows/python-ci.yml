@@ -14,6 +14,9 @@ jobs:
         python-version: ["3.11", "3.12", "3.13"]
 
     steps:
+      - name: Conventional Commit Checker
+        uses: agenthunt/conventional-commit-checker-action@v2.0.0
+      
       - name: Checkout code
         uses: actions/checkout@v4  # Fetches your repo
 
