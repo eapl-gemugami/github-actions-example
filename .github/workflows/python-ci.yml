@@ -5,18 +5,23 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    types: [opened, edited, synchronize]
 
 jobs:
+  check-for-cc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check-for-cc
+        id: check-for-cc
+        uses: agenthunt/conventional-commit-checker-action@v2.0.0
+        
   test-and-lint:
     runs-on: ubuntu-latest  # GitHub-hosted runner
     strategy:
       matrix:
         python-version: ["3.11", "3.12", "3.13"]
 
-    steps:
-      - name: Conventional Commit Checker
-        uses: agenthunt/conventional-commit-checker-action@v2.0.0
-      
+    steps:    
       - name: Checkout code
         uses: actions/checkout@v4  # Fetches your repo
 
